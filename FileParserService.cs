@@ -29,8 +29,6 @@ public static class FileParserService
             var departmentLine = lines[3];
             var salaryLine = lines[4];
             var projectsLine = lines[5];
-            //var certificationsLine = lines[6];
-            //var skillsLine = lines[7];
 
             var employee = new Employee(
                 idLine.Split(":")[1].Trim(),
@@ -39,8 +37,6 @@ public static class FileParserService
                 departmentLine.Split(":")[1].Trim(),
                 salaryLine.Split(":")[1].Trim(),
                 projectsLine.Split(":")[1].Trim()
-                //certificationsLine.Split(":")[1].Trim(),
-                //skillsLine.Split(":")[1].Trim()
              );
 
             employeeList.Add(employee);
@@ -50,10 +46,10 @@ public static class FileParserService
     public static void CreateTableStyledTXT(int columns, int rows, int length)
     {
         int rowsCount = 2 * rows + 1;
-        int colCount = length * columns + columns + 1;  //col*(length+1) + 1
+        int colCount = length * columns + columns + 1;  
         for (int i = 1; i <= rowsCount; i++)
         {
-            if (i % 2 == 1) // + - 
+            if (i % 2 == 1) 
             {
                 for (int j = 1; j <= colCount; j++)
                 {
@@ -61,7 +57,7 @@ public static class FileParserService
                     else Console.Write("-");
                 }
             }
-            else // |
+            else 
             {
                 for (int j = 1; j <= colCount; j++)
                 {
@@ -80,12 +76,12 @@ public static class FileParserService
         int maxLength = CountMaxLengthInEmployees(employees);
 
         int rowsCount = 2 * rows + 1;
-        int colCount = maxLength * columns + columns + 1;  //col*(length+1) + 1
+        int colCount = maxLength * columns + columns + 1;  
         int employeeIndex = 0;
         
         for (int i = 1; i <= rowsCount; i++)
         {
-            if (i % 2 == 1) // + - 
+            if (i % 2 == 1)
             {
                 for (int j = 1; j <= colCount; j++)
                 {
@@ -93,15 +89,9 @@ public static class FileParserService
                     else Console.Write("-");
                 }
             }
-            else // |
+            else 
             {
-                //for (int j = 1; j <= colCount; j++)
-                //{
-                //    if ((j - 1) % (maxLength + 1) == 0) 
-                //    { 
-                //        Console.Write($"|{currentEmployee}"); 
-                //    }
-                //}
+
                 var currentEmployee = employees[employeeIndex];
 
                 List<string> employeeInfo = new List<string>();
@@ -109,10 +99,8 @@ public static class FileParserService
                 employeeInfo.Add(currentEmployee.NAME);
                 employeeInfo.Add(currentEmployee.DEPARTMENT);
                 employeeInfo.Add(currentEmployee.POSITION);
-                //employeeInfo.Add(currentEmployee.SKILLS);
                 employeeInfo.Add(currentEmployee.SALARY);
                 employeeInfo.Add(currentEmployee.PROJECTS);
-                //employeeInfo.Add(currentEmployee.CERTIFICATIONS);
 
                 for (int j = 0; j < columns; j++)
                 {
@@ -137,9 +125,7 @@ public static class FileParserService
             if(employee.POSITION.Length > maxLength) maxLength = employee.POSITION.Length;
             if(employee.PROJECTS.Length > maxLength) maxLength = employee.PROJECTS.Length;
             if(employee.SALARY.Length > maxLength) maxLength = employee.SALARY.Length;
-            //if(employee.SKILLS.Length > maxLength) maxLength = employee.SKILLS.Length;
             if (employee.DEPARTMENT.Length > maxLength) maxLength = employee.DEPARTMENT.Length;
-            //if (employee.CERTIFICATIONS.Length > maxLength) maxLength = employee.CERTIFICATIONS.Length;
         }
 
         return maxLength;
